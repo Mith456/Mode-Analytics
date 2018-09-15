@@ -1,0 +1,29 @@
+## 1. Write a query to calculate the average opening price 
+
+SELECT AVG(open)
+FROM tutorial.aapl_historical_stock_price 
+
+
+## 2. What was Apple's lowest stock price (at the time of this data collection)?
+
+SELECT MIN(low)
+FROM tutorial.aapl_historical_stock_price
+
+## 3. What was the highest single-day increase in Apple's share value?
+
+SELECT MAX(close - open) AS top_share
+FROM tutorial.aapl_historical_stock_price
+
+## 4. Write a query that calculates the average daily trade volume for Apple stock.
+
+SELECT AVG(volume)
+FROM tutorial.aapl_historical_stock_price
+
+## 5. Calculate the total number of shares traded each month. Order your results chronologically.
+
+ SELECT year,
+       month,
+       SUM(volume) AS volume_sum
+ FROM tutorial.aapl_historical_stock_price
+ GROUP BY year, month
+ ORDER BY year, month
