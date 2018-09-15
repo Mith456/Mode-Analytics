@@ -27,3 +27,31 @@ FROM tutorial.aapl_historical_stock_price
  FROM tutorial.aapl_historical_stock_price
  GROUP BY year, month
  ORDER BY year, month
+ 
+ ## 6. Write a query to calculate the average daily price change in Apple stock, grouped by year.
+ 
+SELECT year, AVG(close-open) AS Average_stock_price_change
+FROM tutorial.aapl_historical_stock_price 
+GROUP BY 1
+
+## 7. Write a query that calculates the lowest and highest prices that Apple stock achieved each month.
+
+SELECT year,month, Min(low) as lowest_stock, max(high) as highest_Stock
+FROM tutorial.aapl_historical_stock_price 
+GROUP BY 1,2
+ORDER BY 1,2
+
+## 8. Find every month during which AAPL stock worked its way over $400/share
+
+SELECT year, month, max(high) as month_high
+FROM tutorial.aapl_historical_stock_price
+GROUP BY year, month
+HAVING MAX(high) > 400
+ORDER BY year, month
+
+## 9. Write a query that counts the number of unique values in the month column for each year.
+
+SELECT Year, COUNT(UNIQUE month) AS unique_months
+FROM tutorial.aapl_historical_stock_price
+GROUP BY 1
+ORDER BY 1
